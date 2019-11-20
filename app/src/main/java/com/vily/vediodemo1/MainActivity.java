@@ -124,15 +124,19 @@ public class MainActivity extends AppCompatActivity {
         super.onDestroy();
 
         Log.i(TAG, "onDestroy: ------");
-        if(mCamera2Utils!=null){
-            mCamera2Utils.release();
-        }
         if(mCameraRecordDecoder!=null){
             mCameraRecordDecoder.release();
             mCameraRecordDecoder=null;
         }
+
         CacheReadThread.getInstance().setReadListener(null);
         CacheReadThread.getInstance().release();
+
+        if(mCamera2Utils!=null){
+            mCamera2Utils.release();
+        }
+
+
 
 
 
@@ -175,5 +179,15 @@ public class MainActivity extends AppCompatActivity {
         });
 
         mCamera2Utils.encodePreview();
+    }
+
+    public void stopencode(View view) {
+        if(mCameraRecordDecoder!=null){
+            mCameraRecordDecoder.release();
+            mCameraRecordDecoder=null;
+        }
+
+        CacheReadThread.getInstance().setReadListener(null);
+        CacheReadThread.getInstance().release();
     }
 }

@@ -466,6 +466,7 @@ public class Camera2Utils {
     public void release() {
         Log.i(TAG, "release: -----------camrautils2");
         stopBackgroundThread();
+        closePreviewSession();
         try {
 
             Camera2Codec.getInstance().release();

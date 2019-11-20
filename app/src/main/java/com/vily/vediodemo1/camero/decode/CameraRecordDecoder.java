@@ -53,6 +53,7 @@ public class CameraRecordDecoder {
             e.printStackTrace();
         }
         MediaFormat mediaFormat = MediaFormat.createVideoFormat(MediaFormat.MIMETYPE_VIDEO_HEVC, MyConfig.width, MyConfig.height);
+        mediaFormat.setInteger(MediaFormat.KEY_ROTATION, 90);
 
         //SurfaceView
         mCodec0.configure(mediaFormat, holder.getSurface(), null, 0); //直接解码送surface显示

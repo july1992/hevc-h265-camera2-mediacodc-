@@ -91,7 +91,12 @@
 
             android:text="送入mediacodec_encod"
             android:onClick="encode"/>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
 
+            android:text="停止 encod"
+            android:onClick="stopencode"/>
 
 
     </LinearLayout>
