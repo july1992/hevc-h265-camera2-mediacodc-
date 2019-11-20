@@ -295,7 +295,7 @@ public class Camera2Utils {
 
                 @Override
                 public void onConfigureFailed(CameraCaptureSession cameraCaptureSession) {
-
+                    Log.i(TAG, "onConfigureFailed: ------fale");
                 }
             }, mBackgroundHandler);
         } catch (Exception e) {
@@ -342,10 +342,7 @@ public class Camera2Utils {
                         @Override
                         public void onConfigureFailed(CameraCaptureSession session) {
 
-                            session.close();
-                            if (null != activity) {
-                                Toast.makeText(activity, "Failed", Toast.LENGTH_SHORT).show();
-                            }
+                            Log.i(TAG, "onConfigureFailed: ------fale");
                         }
                     }, mBackgroundHandler);
 
@@ -430,10 +427,7 @@ public class Camera2Utils {
                         @Override
                         public void onConfigureFailed(CameraCaptureSession session) {
 
-                            session.close();
-                            if (null != activity) {
-                                Toast.makeText(activity, "Failed", Toast.LENGTH_SHORT).show();
-                            }
+                            Log.i(TAG, "onConfigureFailed: -------:falie");
                         }
                     }, mBackgroundHandler);
 
@@ -464,37 +458,44 @@ public class Camera2Utils {
 
 
     public void release() {
-        Log.i(TAG, "release: -----------camrautils2");
-        stopBackgroundThread();
+
         closePreviewSession();
         try {
 
             Camera2Codec.getInstance().release();
+
             Camera2Record.getInstance().release();
 
 
             mCameraOpenCloseLock.acquire();
+
             if (null != mPreviewSession) {
 
                 mPreviewSession.close();
                 mPreviewSession = null;
             }
+
             if (null != mCameraDevice) {
                 mCameraDevice.close();
                 mCameraDevice = null;
             }
+
             if (null != mImageReader) {
                 mImageReader.close();
                 mImageReader = null;
             }
 
+            stopBackgroundThread();
 
 
         } catch (Exception e) {
+
             e.printStackTrace();
             throw new RuntimeException("Interrupted while trying to lock camera closing.", e);
         } finally {
+
             mCameraOpenCloseLock.release();
+
         }
         mManager = null;
     }

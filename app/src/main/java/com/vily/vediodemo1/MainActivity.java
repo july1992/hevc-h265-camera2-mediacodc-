@@ -62,12 +62,9 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void surfaceDestroyed(SurfaceHolder surfaceHolder) {
-                if(mCameraRecordDecoder!=null){
-                    mCameraRecordDecoder.release();
-                    mCameraRecordDecoder=null;
-                }
-                CacheReadThread.getInstance().setReadListener(null);
-                CacheReadThread.getInstance().release();
+                Log.i(TAG, "surfaceDestroyed: ------");
+
+                onDestroy();
             }
         });
 
@@ -95,7 +92,8 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public boolean onSurfaceTextureDestroyed(SurfaceTexture texture) {
 
-            onDestroy();
+            Log.i(TAG, "onSurfaceTextureDestroyed: ------");
+            release();
 
             return true;
         }
@@ -124,6 +122,11 @@ public class MainActivity extends AppCompatActivity {
         super.onDestroy();
 
         Log.i(TAG, "onDestroy: ------");
+
+
+    }
+
+    private void release(){
         if(mCameraRecordDecoder!=null){
             mCameraRecordDecoder.release();
             mCameraRecordDecoder=null;
@@ -135,11 +138,6 @@ public class MainActivity extends AppCompatActivity {
         if(mCamera2Utils!=null){
             mCamera2Utils.release();
         }
-
-
-
-
-
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
