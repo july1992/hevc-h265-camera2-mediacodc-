@@ -14,4 +14,8 @@ public class MyConfig {
     public static int frame=30;
 
     public static int bitRate=8*10000;
+
+    public static int recordWidth=544;
+
+    public static int recordHeight=960;
 }

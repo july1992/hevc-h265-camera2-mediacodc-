@@ -315,9 +315,12 @@ public class CameraRecordDecoder {
     public void release() {
 
         isFinish=true;
-        mCodec0.stop();
-        mCodec0.release();
-        mCodec0=null;
+        if(mCodec0!=null){
+            mCodec0.stop();
+            mCodec0.release();
+            mCodec0=null;
+        }
+
     }
 
 }

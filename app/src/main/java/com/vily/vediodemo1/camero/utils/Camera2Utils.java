@@ -30,6 +30,7 @@ import android.widget.Toast;
 import androidx.annotation.RequiresApi;
 
 import com.vily.vediodemo1.MainActivity;
+import com.vily.vediodemo1.cache.CacheReadThread;
 import com.vily.vediodemo1.camero.encode.Camera2Codec;
 import com.vily.vediodemo1.camero.encode.Camera2Record;
 
@@ -244,8 +245,10 @@ public class Camera2Utils {
 
 
     public void stopRecordingVideo() {
-        mMediaRecorder.stop();
-        mMediaRecorder.reset();
+        if(mMediaRecorder!=null){
+            mMediaRecorder.stop();
+            mMediaRecorder.reset();
+        }
 
         startPreview();
     }
@@ -388,7 +391,7 @@ public class Camera2Utils {
     }
 
     // 通过mediacodec 创建surface  ， 将surface送入mPreviewBuilder
-    public void encodePreview() {
+    public void encodePreview(final CacheReadThread readThread) {
 
         try {
             closePreviewSession();
@@ -421,7 +424,7 @@ public class Camera2Utils {
                             mPreviewSession = session;
                             updatePreview();
 
-                            Camera2Codec.getInstance().encode();
+                            Camera2Codec.getInstance().encode(readThread);
                         }
 
                         @Override

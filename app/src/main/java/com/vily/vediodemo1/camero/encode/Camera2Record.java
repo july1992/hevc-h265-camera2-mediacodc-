@@ -81,7 +81,7 @@ public class Camera2Record {
         File file = new File(path);
 
         mMediaRecorder.setOutputFile(file);
-        mMediaRecorder.setVideoEncodingBitRate(10000000);
+        mMediaRecorder.setVideoEncodingBitRate(100*10000);
         mMediaRecorder.setVideoFrameRate(30);
         mMediaRecorder.setVideoSize(mVideoSize.getWidth(), mVideoSize.getHeight());
         mMediaRecorder.setVideoEncoder(MediaRecorder.VideoEncoder.H264);
@@ -111,6 +111,8 @@ public class Camera2Record {
             mMediaRecorder.release();
             mMediaRecorder = null;
         }
+
+        mCamera2Encode=null;
 
     }
 }

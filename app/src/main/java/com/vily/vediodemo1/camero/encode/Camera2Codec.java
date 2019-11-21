@@ -116,10 +116,8 @@ public class Camera2Codec {
     private byte[] pps;
 
 
-    public void encode() {
+    public void encode(CacheReadThread readThread) {
         pts = 0;
-
-
 
         while (flag) {
 
@@ -166,7 +164,10 @@ public class Camera2Codec {
 
                 Log.i(TAG, "encode: ------:" + data.length);
 
-                CacheReadThread.getInstance().addData(data);
+                if(readThread!=null){
+                    readThread.addData(data);
+                }
+
 
                 videoEncodec.releaseOutputBuffer(outputBufferIndex, false);
                 outputBufferIndex = videoEncodec.dequeueOutputBuffer(mVideoBufferinfo, 0);
