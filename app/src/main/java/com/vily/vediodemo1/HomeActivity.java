@@ -56,4 +56,29 @@ public class HomeActivity extends AppCompatActivity {
         Intent intent=new Intent(HomeActivity.this,MainActivity.class);
         startActivity(intent);
     }
+
+    public void voice(View view) {
+
+        if (ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.RECORD_AUDIO)
+                != PackageManager.PERMISSION_GRANTED) {
+            if (!ActivityCompat.shouldShowRequestPermissionRationale(HomeActivity.this, Manifest.permission.CAMERA)) {
+                ActivityCompat.requestPermissions(HomeActivity.this, new String[]{Manifest.permission.CAMERA,
+                        Manifest.permission.RECORD_AUDIO,Manifest.permission.WRITE_EXTERNAL_STORAGE}, 10);
+
+            }
+            return;
+        }
+        if (ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                != PackageManager.PERMISSION_GRANTED) {
+            if (!ActivityCompat.shouldShowRequestPermissionRationale(HomeActivity.this, Manifest.permission.CAMERA)) {
+                ActivityCompat.requestPermissions(HomeActivity.this, new String[]{Manifest.permission.CAMERA,
+                        Manifest.permission.RECORD_AUDIO,Manifest.permission.WRITE_EXTERNAL_STORAGE}, 10);
+
+            }
+            return;
+        }
+
+        Intent intent=new Intent(HomeActivity.this,VoiceActivity.class);
+        startActivity(intent);
+    }
 }

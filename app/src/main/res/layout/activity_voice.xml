@@ -3,15 +3,16 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="视频编解码"
-        android:onClick="camera2"/>
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="音频编解码"
-        android:onClick="voice"/>
+        android:text="开始音频流"
+        android:onClick="startCall"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="结束音频流"
+        android:onClick="stopCall"/>
 </LinearLayout>
