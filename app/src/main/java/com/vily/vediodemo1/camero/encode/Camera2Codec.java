@@ -93,7 +93,6 @@ public class Camera2Codec {
             mVideoFormat.setInteger(MediaFormat.KEY_FRAME_RATE, MyConfig.frame);
             mVideoFormat.setInteger(MediaFormat.KEY_I_FRAME_INTERVAL, 1);
 
-
             videoEncodec = MediaCodec.createEncoderByType(MediaFormat.MIMETYPE_VIDEO_HEVC);
 
             videoEncodec.configure(mVideoFormat, null, null, MediaCodec.CONFIGURE_FLAG_ENCODE);

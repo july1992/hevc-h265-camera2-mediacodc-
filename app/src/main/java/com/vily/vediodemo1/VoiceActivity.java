@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
+import com.vily.vediodemo1.camero.encode.AudioEncode;
 import com.vily.vediodemo1.voice.AudioPlay;
 import com.vily.vediodemo1.voice.CallAudio;
 
@@ -20,6 +21,7 @@ public class VoiceActivity extends AppCompatActivity {
     private static final String TAG = "VoiceActivity";
     private CallAudio mCallAudio;
     private AudioPlay mAudioPlay;
+    private AudioEncode mAudioEncode;
 
 
     @Override
@@ -47,16 +49,19 @@ public class VoiceActivity extends AppCompatActivity {
 
     private void initData() {
         mAudioPlay = new AudioPlay();
-
         mAudioPlay.start();
+
+        mAudioEncode = AudioEncode.getInstance();
+        mAudioEncode.initAudioCodec();
+
 
         mCallAudio = new CallAudio();
         mCallAudio.init(new CallAudio.RecordListener() {
             @Override
             public void onRecord(byte[] var1) {
-
+                mAudioEncode.hardEncoder(var1,var1.length);
                 Log.i(TAG, "onRecord: ----:"+var1.length+ Arrays.toString(var1));
-                mAudioPlay.addData(var1);
+//                mAudioPlay.addData(var1);
             }
         });
         mCallAudio.start();

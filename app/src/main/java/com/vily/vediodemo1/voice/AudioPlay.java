@@ -1,6 +1,7 @@
 package com.vily.vediodemo1.voice;
 
 import android.media.AudioFormat;
+import android.media.AudioManager;
 import android.media.AudioTrack;
 import android.provider.MediaStore;
 import android.util.Log;
@@ -26,6 +27,7 @@ public class AudioPlay  extends Thread  {
     private CacheBuffer<byte[]> audioBuffer;
 
     public AudioPlay() {
+//        AudioManager.STREAM_MUSIC
         int minBufferSize = AudioTrack.getMinBufferSize(8000, AudioFormat.CHANNEL_OUT_MONO, 2);
         Log.i(TAG, "AudioPlay: --:"+minBufferSize);
 
